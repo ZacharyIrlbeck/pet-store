@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import faker from 'faker'
+import SearchBar from './SearchBar'
 
 export default function HeroBanner(){ 
     const Banner = styled.div`
@@ -11,7 +12,7 @@ export default function HeroBanner(){
         align-items: center;
         justify-items: center;
         justify-content: center;
-        font-size: 15em;
+        font-size: 10em;
     `
 
     const BannerContent = styled.div`
@@ -21,6 +22,6 @@ export default function HeroBanner(){
     `
 
     return(<Banner>
-        <BannerContent>Pet Marketplace</BannerContent>
+        <SearchBar />
     </Banner>)
 }

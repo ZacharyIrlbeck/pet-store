@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import SearchBar from './SearchBar'
 
 export default function Header(){
     const TopNav = styled.ul`
@@ -16,7 +15,6 @@ export default function Header(){
 
     return(<div>
         <TopNav>
-            <SearchBar />
             <NavItem><Link to="/market">Market</Link></NavItem>
             <NavItem><Link to="/login">Login</Link></NavItem>
             <NavItem><Link to="/signup">Sign Up</Link></NavItem>

@@ -1,11 +1,11 @@
+import { useContext } from 'react'
+import { PetContext } from './PetContext'
 import styled from 'styled-components'
-import usePets from "../hooks/usePets"
 import PetCard from "./PetCard"
 import HeroBanner from './HeroBanner' 
 
 export default function PetMarketplace(){
-    const [getPets] = usePets()
-    const pets = getPets()
+    const { pets } = useContext(PetContext)
 
     const Marketplace = styled.div`
         display: grid;

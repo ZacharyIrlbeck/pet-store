@@ -6,16 +6,29 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SignInPage from './components/LoginInPage'
 import PetMarketplace from './components/PetMarkteplace'
+import PetInfoPage from './pages/PetInfoPage'
+import PetProvider from './components/PetContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} >
-        <Route path="login" element={<SignInPage />} />
-        <Route path="market" element={<PetMarketplace />} />
-      </Route>
-    </Routes>
+    <PetProvider >
+      <Routes>
+        <Route path="/" element={<App />} >
+          <Route path="login" element={<SignInPage />} />
+          <Route path="market" element={<PetMarketplace />} />
+          <Route path="/pets/:petId" element={<PetInfoPage />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Route>
+      </Routes>
+      </PetProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

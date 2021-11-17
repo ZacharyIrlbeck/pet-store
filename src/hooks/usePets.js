@@ -1,14 +1,16 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import faker from 'faker'
 
-// probably want to use the reducer pattern here, show off a bit. will be the second step, third refactoring to 
-// use w/ typescript
-
-// pet should also likely have an owner
-
 export default function usePets(){
-    const getPets = () => {
-        return Array(50).fill().map((val, ind) => {
+    const [pets, setPets] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        fetchPets()
+    }, [])
+
+    const fetchPets = () => {
+        const res = Array(50).fill().map((val, ind) => {
             return {
                 id: ind,
                 name: faker.name.firstName(),
@@ -17,7 +19,13 @@ export default function usePets(){
                 image: faker.image.image()
             }
         })
+
+        setPets(res)
+        setLoading(false)
     }
 
-    return [getPets]
+    return {
+        pets,
+        loading
+    }
 }
