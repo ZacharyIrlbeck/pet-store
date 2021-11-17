@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import usePets from "../hooks/usePets"
 import PetCard from "./PetCard"
+import HeroBanner from './HeroBanner' 
 
 export default function PetMarketplace(){
     const [getPets] = usePets()
@@ -13,7 +14,10 @@ export default function PetMarketplace(){
         justify-content: space-around;
     `
 
-    return(<Marketplace>
-        { pets && pets.map(pet => (<PetCard pet={pet} />) )}
-    </Marketplace>)
+    return(<div>
+        <HeroBanner />
+        <Marketplace>
+            { pets && pets.map(pet => (<PetCard pet={pet} />) )}
+        </Marketplace>
+    </div>)
 }

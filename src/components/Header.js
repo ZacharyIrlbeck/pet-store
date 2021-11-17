@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
 export default function Header(){
@@ -16,9 +17,10 @@ export default function Header(){
     return(<div>
         <TopNav>
             <SearchBar />
-            <NavItem>Login</NavItem>
-            <NavItem>Sign Up</NavItem>
-            <NavItem>About Us</NavItem>
+            <NavItem><Link to="/market">Market</Link></NavItem>
+            <NavItem><Link to="/login">Login</Link></NavItem>
+            <NavItem><Link to="/signup">Sign Up</Link></NavItem>
+            <NavItem><Link to="/about">About Us</Link></NavItem>
         </TopNav>
     </div>)
 }
