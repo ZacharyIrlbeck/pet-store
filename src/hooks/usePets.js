@@ -13,7 +13,8 @@ export default function usePets(){
                 id: ind,
                 name: faker.name.firstName(),
                 breed: faker.animal.dog(),
-                price: faker.commerce.price()
+                price: faker.commerce.price(),
+                image: faker.image.image()
             }
         })
     }
