@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import SignInPage from './components/LoginInPage'
+import LoginPage from './pages/LoginPage'
 import PetMarketplace from './components/PetMarkteplace'
 import PetInfoPage from './pages/PetInfoPage'
 import PetProvider from './context/PetContext'
@@ -18,7 +18,7 @@ ReactDOM.render(
     <PetProvider >
       <Routes>
         <Route path="/" element={<App />} >
-          <Route path="login" element={<SignInPage />} />
+          <Route path="login" element={<LoginPage />} />
           <Route path="market" element={<PetMarketplace />} />
 
           <Route 

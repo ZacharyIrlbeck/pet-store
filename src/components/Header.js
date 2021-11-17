@@ -17,8 +17,6 @@ export default function Header(){
         <TopNav>
             <NavItem><Link to="/market">Market</Link></NavItem>
             <NavItem><Link to="/login">Login</Link></NavItem>
-            <NavItem><Link to="/signup">Sign Up</Link></NavItem>
-            <NavItem><Link to="/about">About Us</Link></NavItem>
         </TopNav>
     </div>)
 }
