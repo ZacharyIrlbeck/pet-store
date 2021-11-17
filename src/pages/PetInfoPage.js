@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { PetContext } from "../components/PetContext";
+import { PetContext } from "../context/PetContext";
 
 export default function PetInfoPage(){
     const { pets } = useContext(PetContext)

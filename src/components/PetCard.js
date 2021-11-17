@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export default function PetCard({ pet }){
     const Card = styled.figure`
@@ -16,10 +17,14 @@ export default function PetCard({ pet }){
         opacity: 0.7;
     `
 
-    return(<Card>
-        <img src={pet.image} width="300px" height="300px" />
-        <CardCaption>
-            { pet.name }
-        </CardCaption>
-    </Card>)
+    return(
+        <Link to={`/pets/${pet.id}`} key={pet.id}>
+            <Card>
+                <img src={pet.image} width="300px" height="300px" />
+                <CardCaption>
+                    { pet.name }
+                </CardCaption>
+            </Card>
+        </Link>
+    )
 }

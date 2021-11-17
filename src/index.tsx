@@ -7,16 +7,29 @@ import reportWebVitals from './reportWebVitals';
 import SignInPage from './components/LoginInPage'
 import PetMarketplace from './components/PetMarkteplace'
 import PetInfoPage from './pages/PetInfoPage'
-import PetProvider from './components/PetContext'
+import PetProvider from './context/PetContext'
+import AuthProvider from './context/AuthContext';
+import RequireAuth from './components/RequireAuth'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <AuthProvider>
     <PetProvider >
       <Routes>
         <Route path="/" element={<App />} >
           <Route path="login" element={<SignInPage />} />
           <Route path="market" element={<PetMarketplace />} />
+
+          <Route 
+            path="/test-auth"
+            element={
+              <RequireAuth>
+                <PetMarketplace />
+              </RequireAuth>
+            }
+          />
+
           <Route path="/pets/:petId" element={<PetInfoPage />} />
           <Route
             path="*"
@@ -29,6 +42,7 @@ ReactDOM.render(
         </Route>
       </Routes>
       </PetProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

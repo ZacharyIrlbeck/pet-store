@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { PetContext } from './PetContext'
+import { PetContext } from '../context/PetContext'
 import styled from 'styled-components'
 import PetCard from "./PetCard"
 import HeroBanner from './HeroBanner' 
