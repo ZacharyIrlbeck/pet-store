@@ -34,9 +34,9 @@ function LoginForm(){
         <h2>Login</h2>
         { error && errorMsg }
         <form onSubmit={handleSubmit} >
-            <input type="email" name="email" />
-            <input type="password"  name="password" />
-            <button type="submit" >Login</button>
+            <input data-testid="login-email" type="email" name="email" />
+            <input data-testid="login-password" type="password"  name="password" />
+            <button data-testid="login-submit" type="submit" >Login</button>
         </form>
     </div>)
 }
