@@ -20,8 +20,10 @@ const Banner = styled.div`
 //     color: white;
 // `
 
+// bit short on time, waiting on the search bar for now.
+
 export default function HeroBanner(){ 
     return(<Banner>
-        <SearchBar />
+        {/* <SearchBar /> */}
     </Banner>)
 }

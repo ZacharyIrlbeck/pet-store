@@ -8,7 +8,7 @@ function VendorPage(){
 
     return(
         <div>
-            { vendors.map(v => <Link to={`/vendor/${v.id}`}><VendorListItem key={v.id} vendor={v} /></Link>)}
+            { vendors.map(v => <Link key={v.id} to={`/vendor/${v.id}`}><VendorListItem vendor={v} /></Link>)}
         </div>
     )
 }
