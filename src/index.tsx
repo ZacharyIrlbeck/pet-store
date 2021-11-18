@@ -10,6 +10,7 @@ import PetInfoPage from './pages/PetInfoPage'
 import PetProvider from './context/PetContext'
 import AuthProvider from './context/AuthContext';
 import RequireAuth from './components/RequireAuth'
+import ProfilePage from './pages/ProfilePage'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,10 +23,10 @@ ReactDOM.render(
           <Route path="market" element={<PetMarketplace />} />
 
           <Route 
-            path="/test-auth"
+            path="/profile"
             element={
               <RequireAuth>
-                <PetMarketplace />
+                <ProfilePage />
               </RequireAuth>
             }
           />

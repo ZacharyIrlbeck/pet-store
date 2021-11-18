@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router'
+import { useNavigate } from 'react-router'
 import useAuth from '../hooks/useAuth'
 
 function LoginForm(){
     const { login } = useAuth()
 
-    const location = useLocation()
     const navigate = useNavigate()
-
-    let from = location.state ? location.state.from.pathname : "/"
 
     const [error, setError] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
@@ -26,7 +23,7 @@ function LoginForm(){
         const res = login(email, password)
 
         if(res){
-            navigate(from, { replace: true })
+            navigate('/market', { replace: true })
         }else{
             setErrorMsg("incorrent email or password")
             setError(true)
@@ -39,7 +36,7 @@ function LoginForm(){
         <form onSubmit={handleSubmit} >
             <input type="email" name="email" />
             <input type="password"  name="password" />
-            <button type="submit" />
+            <button type="submit" >Login</button>
         </form>
     </div>)
 }

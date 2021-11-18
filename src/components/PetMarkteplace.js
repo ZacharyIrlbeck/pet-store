@@ -17,7 +17,7 @@ export default function PetMarketplace(){
     return(<div>
         <HeroBanner />
         <Marketplace>
-            { pets && pets.map(pet => (<PetCard pet={pet} />) )}
+            { pets && pets.map(pet => (<PetCard key={pet.id} pet={pet} />) )}
         </Marketplace>
     </div>)
 }
