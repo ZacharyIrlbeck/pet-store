@@ -37,18 +37,21 @@ function useAuth(){
         navigate('/login')
     }
 
-    const updateUserDescription = desc => {
+    const updateUserProfile = data => {
+        const { password, description } = data
+
         const newData = {...userInfo}
-        newData.description = desc
 
+        if(data.hasOwnProperty('description')){
+            newData.description = description
+        }
+
+        if(data.hasOwnProperty('password')){
+            newData.pass = password
+        }
+        
         setUserInfo(newData)
-    }
-
-    const updateUserPassword = pass => {
-        const newData = {...userInfo}
-        newData.password = pass
-
-        setUserInfo(newData)
+        return true
     }
 
     return {
@@ -56,8 +59,7 @@ function useAuth(){
         login,
         isLoggedIn,
         userInfo,
-        updateUserDescription,
-        updateUserPassword
+        updateUserProfile
     }
 }
 
