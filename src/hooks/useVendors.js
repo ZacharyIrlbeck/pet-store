@@ -9,19 +9,29 @@ function useVendors(){
             return {
                 id: ind + 1,
                 email: faker.internet.email(),
-                pass: faker.internet.password(),
+                password: faker.internet.password(),
                 displayname: faker.internet.userName(),
                 profilepicture: faker.image.avatar(), 
                 description : faker.lorem.paragraph()
             }
         })
 
-        setVendors(res)
+        const defaultAdminAccount = {
+            id: 11,
+            email: 'test@gmail.com',
+            password: 'password',
+            displayname: 'Dev Account',
+            profilepicture: faker.image.avatar(),
+            description: faker.lorem.paragraph()
+        }
+
+        setVendors([...res, defaultAdminAccount])
     }, [])
 
     const getVendor = id => vendors.find(x => x.id === id)
+    const getVendorByEmail = email => vendors.find(x => x.email === email)
 
-    return {vendors, getVendor }
+    return {vendors, getVendor, getVendorByEmail }
 }
 
 export default useVendors

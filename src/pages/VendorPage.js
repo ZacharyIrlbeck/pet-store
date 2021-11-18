@@ -4,9 +4,6 @@ import { VendorContext } from '../context/VendorContext'
 import { PetContext } from '../context/PetContext'
 import PetCard from '../components/PetCard'
 
-
-// I should be able to reuse the pet cards here. 
-
 function VendorPage(){
     const { getVendor } = useContext(VendorContext)
     const { fetchPetsByVendor } = useContext(PetContext)
@@ -21,7 +18,7 @@ function VendorPage(){
 
         setVendor(v)
         setListedPets(p)
-    }, [vendorId])
+    }, [vendorId, getVendor, fetchPetsByVendor, vId])
 
     if(!vendor){
         return <div>Loading ...</div>

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import useVendors from './useVendors'
 import { useNavigate } from 'react-router'
 
 function useAuth(){
+    const { getVendorByEmail } = useVendors()
     const navigate = useNavigate()
     const [userInfo, setUserInfo] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -15,19 +17,18 @@ function useAuth(){
         }
     }, [])
     
-    const login = (email, pass) => {
+    const login = (email, password) => {
+        const vendor = getVendorByEmail(email)
         
-        const res = {
-            email,
-            pass,
-            description: ""
+        if(vendor.password === password){
+            setIsLoggedIn(true)
+            setUserInfo(vendor)
+            localStorage.setItem('user-info', JSON.stringify(vendor))
+    
+            return true
+        }else{
+            return false
         }
-
-        setIsLoggedIn(true)
-        setUserInfo(res)
-        localStorage.setItem('user-info', JSON.stringify(res))
-
-        return true
     }
 
     const logout = () => {
@@ -47,7 +48,7 @@ function useAuth(){
         }
 
         if(data.hasOwnProperty('password')){
-            newData.pass = password
+            newData.password = password
         }
         
         setUserInfo(newData)

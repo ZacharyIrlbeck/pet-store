@@ -39,7 +39,7 @@ function CreatePetForm(){
             <input type="text" name="firstname" />
             <input type="text" name="breed" />
             <input type="number" name="price" />
-            <label for="image" >
+            <label>
                 You can link to a photo below.
                 <input type="text" name="image" />
             </label>

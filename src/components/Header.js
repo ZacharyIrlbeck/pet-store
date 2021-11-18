@@ -25,6 +25,7 @@ export default function Header(){
             { isLoggedIn && <NavItem><Link to="/profile">My Account</Link></NavItem> }
             { isLoggedIn && <NavItem><Link to="/list">List A Pet</Link></NavItem> }
             <NavItem><Link to="/market">Market</Link></NavItem>
+            <NavItem><Link to="/vendors">Vendors</Link></NavItem>
         </TopNav>
     </div>)
 }
