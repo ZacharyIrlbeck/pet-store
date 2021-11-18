@@ -14,10 +14,6 @@ export default function PetInfoPage(){
 
     }, [petId, pets])
 
-    useEffect(() => {
-        console.log('the pet is...', pet)
-    }, pet)
-
     return(<div>
         {
             pet && <div>
@@ -25,7 +21,7 @@ export default function PetInfoPage(){
                 Breed: {pet.breed}
                 Price: {pet.price}
 
-                <img src={pet.image} height="200px" width="100px" />
+                <img src={pet.image} height="200px" width="100px" alt="" />
             </div>
         }
     </div>)

@@ -14,11 +14,11 @@ const Banner = styled.div`
     font-size: 10em;
 `
 
-const BannerContent = styled.div`
-    height: 100%;
-    width: 100%;
-    color: white;
-`
+// const BannerContent = styled.div`
+//     height: 100%;
+//     width: 100%;
+//     color: white;
+// `
 
 export default function HeroBanner(){ 
     return(<Banner>

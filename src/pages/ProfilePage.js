@@ -3,7 +3,7 @@ import { AuthContext } from '../context/AuthContext'
 import ProfileForm from '../components/ProfileForm'
 
 function ProfilePage(){
-    const { userInfo, updateUserDescription, updateUserPassword } = useContext(AuthContext)
+    const { userInfo } = useContext(AuthContext)
     const [editing, setEditing] = useState(false)
 
     return(

@@ -11,22 +11,38 @@ import PetProvider from './context/PetContext'
 import AuthProvider from './context/AuthContext';
 import RequireAuth from './components/RequireAuth'
 import ProfilePage from './pages/ProfilePage'
+import CreatePetPage from './pages/CreatePetPage'
+import VendorProvider from './context/VendorContext'
+import VendorsPage from './pages/VendorsPage'
+import VendorPage from './pages/VendorPage'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <AuthProvider>
     <PetProvider >
+    <VendorProvider>
       <Routes>
         <Route path="/" element={<App />} >
           <Route path="login" element={<LoginPage />} />
           <Route path="market" element={<PetMarketplace />} />
+          <Route path="vendor/:vendorId" element={<VendorPage />} />
+          <Route path="vendors" element={<VendorsPage />} />
 
           <Route 
             path="/profile"
             element={
               <RequireAuth>
                 <ProfilePage />
+              </RequireAuth>
+            }
+          />
+
+          <Route 
+            path="/list"
+            element={
+              <RequireAuth>
+                <CreatePetPage />
               </RequireAuth>
             }
           />
@@ -42,6 +58,7 @@ ReactDOM.render(
           />
         </Route>
       </Routes>
+      </VendorProvider>
       </PetProvider>
       </AuthProvider>
     </BrowserRouter>

@@ -20,7 +20,7 @@ export default function PetCard({ pet }){
     return(
         <Link to={`/pets/${pet.id}`} key={pet.id}>
             <Card>
-                <img src={pet.image} width="300px" height="300px" />
+                <img src={pet.image} width="300px" height="300px" alt="" />
                 <CardCaption>
                     { pet.name }
                 </CardCaption>
