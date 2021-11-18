@@ -6,8 +6,6 @@ function RequireAuth({ children }){
     const { isLoggedIn } = useContext(AuthContext)
     const location = useLocation()
 
-    console.log('is logged in?', isLoggedIn)
-
     if(!isLoggedIn){
         return <Navigate to="/login" state={{ from: location }} />
     }

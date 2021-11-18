@@ -48,8 +48,7 @@ export default function usePets(){
     const getPet = id => pets.find(p => p.id === id)
 
     const updatePet = (id, data) => {
-        setPets(pets => {
-            pets.map(p => {
+        setPets(pets.map(p => {
                 if(p.id === id){
                     console.log('found a match, replacing...')
     
@@ -64,15 +63,13 @@ export default function usePets(){
                     return p
                 }
             })    
-        })
+        )
         
         return true
     }
 
     const removeListing = id => {
-        setPets(pets => {
-            pets.filter(p => p.id !== id)
-        })
+        setPets(pets.filter(p => p.id !== id))
 
         return true
     }

@@ -6,7 +6,7 @@ import PetCard from '../components/PetCard'
 
 function ProfilePage(){
     const { userInfo } = useContext(AuthContext)
-    const { fetchPetsByVendor } = useContext(PetContext)
+    const { fetchPetsByVendor, removeListing } = useContext(PetContext)
     const [editing, setEditing] = useState(false)
     const [pets, setPets] = useState([])
 
@@ -31,7 +31,12 @@ function ProfilePage(){
 
             My Pets 
 
-            { pets && pets.map(p => <PetCard pet={p} key={p.id} />)}
+            { pets && pets.map(p => { 
+                return(<div key={p.id}>
+                    <button onClick={() => removeListing(p.id) }>Remove Listing</button>
+                    <PetCard pet={p} /> 
+                </div>)
+            })}
 
 
         </div>

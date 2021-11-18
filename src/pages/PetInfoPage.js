@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 import EditPetForm from "../components/EditPetForm";
 
 export default function PetInfoPage(){
-    const { pets, removeListing } = useContext(PetContext)
+    const { pets } = useContext(PetContext)
     const { getVendor } = useContext(VendorContext)
     const { userInfo } = useContext(AuthContext)
     const { petId } = useParams()

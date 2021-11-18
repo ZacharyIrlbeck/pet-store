@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { VendorContext } from '../context/VendorContext'
 import VendorListItem from '../components/VendorListItem'
 
-// add on click to take to the vendor profile page. Aiming to re-use/build on profilepage here. 
-
 function VendorPage(){
     const { vendors } = useContext(VendorContext)
 
