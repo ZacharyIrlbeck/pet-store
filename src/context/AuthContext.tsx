@@ -1,9 +1,13 @@
+import * as React from 'react'
 import { createContext } from "react";
 import useAuth from "../hooks/useAuth";
 
-const AuthContext = createContext()
+const AuthContext = createContext(null)
+ 
+type AuthProviderProps = { children: React.ReactNode }
 
-function AuthProvider({ children }){
+
+function AuthProvider({ children }: AuthProviderProps ){
     const authData = useAuth()
 
     return(

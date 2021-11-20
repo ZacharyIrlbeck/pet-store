@@ -17,7 +17,7 @@ function useAuth(){
         }
     }, [])
     
-    const login = (email, password) => {
+    const login = async (email: string, password: string): Promise<boolean> => {
         const vendor = getVendorByEmail(email)
         
         if(vendor.password === password){

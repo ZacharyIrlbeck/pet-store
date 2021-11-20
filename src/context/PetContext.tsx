@@ -3,6 +3,8 @@ import usePets from "../hooks/usePets";
 
 const PetContext = createContext()
 
+type PetProviderProps = { }
+
 function PetProvider({ children }){
     const petData = usePets()
 

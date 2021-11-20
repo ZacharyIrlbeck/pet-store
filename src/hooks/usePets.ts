@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-import faker from 'faker'
 
-export default function usePets(){
-    const [pets, setPets] = useState([])
+function usePets(){
+    const [pets, setPets] = useState<Pet[]>([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -17,27 +16,7 @@ export default function usePets(){
     }
 
     const fetchPets = () => {
-        const res = Array(50).fill().map((val, ind) => {
-            return {
-                id: ind + 1,
-                name: faker.name.firstName(),
-                breed: faker.animal.dog(),
-                price: faker.commerce.price(),
-                image: faker.image.image(),
-                vendor_id: (Math.floor(Math.random() * 10) + 1)
-            }
-        })
-
-        const defaultAdminPets = Array(5).fill().map((val, ind) => {
-            return {
-                id: 51 + ind,
-                name: faker.name.firstName(),
-                breed: faker.animal.dog(),
-                price: faker.commerce.price(),
-                image: faker.image.image(),
-                vendor_id: 11
-            }
-        })
+        
 
         setPets([...res, ...defaultAdminPets])
         setLoading(false)
@@ -84,3 +63,5 @@ export default function usePets(){
         removeListing
     }
 }
+
+export default usePets
