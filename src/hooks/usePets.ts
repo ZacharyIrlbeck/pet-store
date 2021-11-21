@@ -5,9 +5,8 @@ import { useAuthContext } from '../context/AuthContext'
 
 function usePets(){
     const [pets, setPets] = useState<Pet[]>([])
-    const [loading, setLoading] = useState(true)
     const { userInfo } = useAuthContext()
-
+ 
     useEffect(() => {
         fetchPets().then(res => {
             setPets(res)
@@ -62,7 +61,6 @@ function usePets(){
 
     return {
         pets,
-        loading,
         createPet,
         fetchPetsByVendor,
         getPet,
