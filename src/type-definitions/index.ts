@@ -26,7 +26,6 @@ export interface AuthContextInterface {
 
 export interface PetContextInterface {
     pets: Pet[];
-    loading: boolean;
     createPet: (data: Partial<Pet>) => boolean;
     fetchPetsByVendor: (vendorId: number) => Pet[];
     getPet: (id: number) => Pet | undefined;
