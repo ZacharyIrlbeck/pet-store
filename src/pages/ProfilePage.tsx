@@ -1,21 +1,24 @@
-import { useContext, useState, useEffect } from 'react'
-import { AuthContext } from '../context/AuthContext'
-import { PetContext } from '../context/PetContext'
+import { useState, useEffect } from 'react'
+import { useAuthContext } from '../context/AuthContext'
+import { usePetContext } from '../context/PetContext'
 import ProfileForm from '../components/ProfileForm'
 import PetCard from '../components/PetCard'
+import { Pet } from '../type-definitions'
 
 function ProfilePage(){
-    const { userInfo } = useContext(AuthContext)
-    const { fetchPetsByVendor, removeListing } = useContext(PetContext)
+    const { userInfo } = useAuthContext()
+    const { fetchPetsByVendor, removeListing } = usePetContext()
     const [editing, setEditing] = useState(false)
-    const [pets, setPets] = useState([])
+    const [pets, setPets] = useState<Pet[]>([])
 
     useEffect(() => {
         if(!userInfo)
             return 
 
         const p = fetchPetsByVendor(userInfo.id)
-        setPets(p)
+
+        if(p)
+            setPets(p)
     }, [userInfo, fetchPetsByVendor])
 
     if(!userInfo || pets.length === 0){

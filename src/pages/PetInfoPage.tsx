@@ -1,22 +1,27 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { PetContext } from "../context/PetContext";
-import { VendorContext } from "../context/VendorContext";
-import { AuthContext } from "../context/AuthContext";
+import { usePetContext } from "../context/PetContext";
+import { useVendorContext } from "../context/VendorContext";
+import { useAuthContext } from "../context/AuthContext";
 import EditPetForm from "../components/EditPetForm";
+import { Pet, Vendor } from '../type-definitions'
 
 export default function PetInfoPage(){
-    const { pets } = useContext(PetContext)
-    const { getVendor } = useContext(VendorContext)
-    const { userInfo } = useContext(AuthContext)
+    const { pets } = usePetContext()
+    const { getVendor } = useVendorContext()
+    const { userInfo } = useAuthContext()
     const { petId } = useParams()
-    const [pet, setPet] = useState(null)
-    const [vendor, setVendor] = useState(null)
+    const [pet, setPet] = useState<Pet | null>(null)
+    const [vendor, setVendor] = useState<Vendor | null>(null)
     const [isPetOwner, setIsPetOwner] = useState(false)
 
     useEffect(() => {
-        const p = pets.find(p => p.id === parseInt(petId))
-        setPet(p)
+        if(petId){
+            const p = pets.find(p => p.id === parseInt(petId))
+
+            if(p)
+                setPet(p)
+        }
 
     }, [petId, pets])
 
@@ -25,7 +30,8 @@ export default function PetInfoPage(){
             return 
             
         const v = getVendor(pet.vendor_id)
-        setVendor(v)
+        if(v)
+            setVendor(v)
     }, [pet, getVendor, setVendor])
 
     useEffect(() => {

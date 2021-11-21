@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { VendorContext } from '../context/VendorContext'
+import { useVendorContext } from '../context/VendorContext'
 import VendorListItem from '../components/VendorListItem'
 
 function VendorPage(){
-    const { vendors } = useContext(VendorContext)
+    const { vendors } = useVendorContext()
 
     return(
         <div>

@@ -1,10 +1,9 @@
 import LoginForm from "../components/LoginForm"
-import { AuthContext } from "../context/AuthContext"
-import { useContext } from 'react'
+import { useAuthContext } from "../context/AuthContext"
 import { Navigate } from "react-router"
 
 function LoginPage(){
-    const { isLoggedIn } = useContext(AuthContext)
+    const { isLoggedIn } = useAuthContext()
 
     if(isLoggedIn)
         return(<Navigate to="/market" />)
