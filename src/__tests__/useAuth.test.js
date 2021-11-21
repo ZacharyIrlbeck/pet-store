@@ -1,57 +1,73 @@
+import { act, render } from '@testing-library/react'
 import useAuth from '../hooks/useAuth'
-import { render } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
-import { renderHook, act } from '@testing-library/react-hooks'
 
+jest.mock('react-router', () => {
+    return {
+        useNavigate: () => {
+            return jest.fn()
+        }
+    }
+})
 
-// import { renderHook, act } from '@testing-library/react-hooks'
-// import { CounterStepProvider, useCounter } from './counter'
+jest.mock('../context/VendorContext', () => {
+    return {
+        useVendorContext: () => {
+            return {
+                getVendorByEmail: (email) => {
+                    return {
+                        id: 1,
+                        email: 'test@gmail.com',
+                        password: 'password'
+                    }
+                }
+            }
+        }
+    }
+})
 
-// test('should use custom step when incrementing', () => {
-//   const wrapper = ({ children }) => <CounterStepProvider step={2}>{children}</CounterStepProvider>
-//   const { result } = renderHook(() => useCounter(), { wrapper })
+const getUseAuth = () => {
+    let auth
 
-//   act(() => {
-//     result.current.increment()
-//   })
+    function TestComp(){
+        auth = useAuth()
 
-//   expect(result.current.count).toBe(2)
-// })
+        return null
+    }
 
-// function getAuth(){
-//     const wrapper = ({ children }) => 
-//     let authFunctions
+    render(<TestComp />)
+    return auth
+}
 
-//     function HookContainer(){
-//         authFunctions = useAuth()        
+describe('the useAuth hook', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    })
 
-//         return null
-//     }
+    it('allows login with correct info', async () => {
+        let authStuff, res
 
-//     act(() => {
-//         render(<MemoryRouter><HookContainer /></MemoryRouter>)
-//     })
+        act(() => {
+            authStuff = getUseAuth()
+        })
 
-//     return authFunctions
-// }
+        await act(async () => {
+            res = await authStuff.login("test@gmail.com", "password")
+        })
 
+        expect(res).toEqual(true)
+    })
 
-// describe("the useAuth hook", () => {
-//     it('logs a user in with valid credentials', () => {
-//         const { login, isLoggedIn } = getAuth()
-//         expect(isLoggedIn).toBe(false)
+    it('doesnt allow login with incorrect information', async () => {
+        let authStuff, res
 
-//     })
+        act(() => {
+            authStuff = getUseAuth()
+        })
 
-//     it('doesnt log an invalid user in', () => {
+        await act(async () => {
+            res = await authStuff.login("test@gmail.com", "pa$$word")
+        })
 
-//     })
-
-//     it('logs a user out', () => {
-
-//     })
-
-//     it('updates a logged in users profile information', () => {
-
-//     })
-// })
+        expect(res).toEqual(false)
+    })
+})

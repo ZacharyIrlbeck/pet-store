@@ -1,46 +1,13 @@
 import { useState, useEffect } from 'react'
-import useVendors from './useVendors'
+import { useVendorContext } from '../context/VendorContext'
 import { useNavigate } from 'react-router'
 import { Vendor } from '../type-definitions'
 
-// interface State {
-//     isLoggedIn: boolean,
-//     userInfo: Vendor | null
-// }
-
-// type Action = 
-// | { type: "LOGIN", payload: Vendor }
-// | { type: "UPDATE", payload: Partial<Vendor> }
-// | { type: "LOGOUT" }
-
-// const initialState: State = {
-//     isLoggedIn: false,
-//     userInfo: null
-// }
-
-
-// const authReducer = (state: State, action: Action) : State => {
-//     switch(action.type){
-//         case "LOGIN":
-//             return {
-//                 isLoggedIn: true,
-//                 userInfo: action.payload
-//             }
-//         case "LOGOUT": 
-//             return {
-//                 isLoggedIn: false,
-//                 userInfo: null
-//             }
-//         case "UPDATE":
-//             return Object.assign({}, state, action.payload)
-//         default: 
-//             return state
-//     }
-// }
 
 function useAuth(){
-    const { getVendorByEmail } = useVendors()
+    const { getVendorByEmail } = useVendorContext()
     const navigate = useNavigate()
+
     const [userInfo, setUserInfo] = useState<Vendor | null>(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 

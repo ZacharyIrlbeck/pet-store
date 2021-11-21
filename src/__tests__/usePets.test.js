@@ -3,6 +3,10 @@ import usePets from '../hooks/usePets'
 import * as AuthContext from '../context/AuthContext'
 
 describe('the use pets hook', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    })
+
     it('loads the pets once called', async () => {
         AuthContext.useAuthContext = jest.fn(() => {
             return {
