@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useVendorContext } from '../context/VendorContext'
 import VendorListItem from '../components/VendorListItem'

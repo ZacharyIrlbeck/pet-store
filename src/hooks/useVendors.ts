@@ -1,4 +1,3 @@
-import * as faker from 'faker'
 import { useEffect, useState } from "react"
 import { Vendor } from '../type-definitions' 
 import { fetchVendors } from '../Api'

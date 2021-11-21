@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { usePetContext } from '../context/PetContext'
-import { Pet } from '../type-definitions/'
 
 function CreatePetForm(){
     const { createPet } = usePetContext()

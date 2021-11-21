@@ -21,7 +21,7 @@ const useVendorContext = () => {
     const context = useContext(VendorContext)
 
     if(!context)
-        throw Error("AuthContext must be used with AuthProvider")
+        throw Error("VendorContext must be used with VendorProvider")
 
     return context
 }

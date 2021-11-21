@@ -19,9 +19,9 @@ import VendorPage from './pages/VendorPage'
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <VendorProvider>
     <AuthProvider>
     <PetProvider >
-    <VendorProvider>
       <Routes>
         <Route path="/" element={<App />} >
           <Route path="login" element={<LoginPage />} />
@@ -58,9 +58,9 @@ ReactDOM.render(
           />
         </Route>
       </Routes>
-      </VendorProvider>
       </PetProvider>
       </AuthProvider>
+      </VendorProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useVendorContext } from '../context/VendorContext'
 import { usePetContext } from '../context/PetContext'
@@ -14,8 +14,6 @@ function VendorPage(){
     const [venId, setVenId] = useState<number | null>(null)
 
     useEffect(() => {
-        const { vendorId } = useParams()
-
         if(vendorId){
             setVenId(parseInt(vendorId))
             const v = getVendor(parseInt(vendorId))
