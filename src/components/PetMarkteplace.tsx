@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { PetContext } from '../context/PetContext'
+import { usePetContext } from '../context/PetContext'
 import styled from 'styled-components'
 import PetCard from "./PetCard"
 import HeroBanner from './HeroBanner' 
@@ -12,7 +11,7 @@ const Marketplace = styled.div`
 `
 
 export default function PetMarketplace(){
-    const { pets } = useContext(PetContext)
+    const { pets } = usePetContext()
 
     return(<div>
         <HeroBanner />

@@ -1,9 +1,13 @@
 import { Navigate, useLocation } from "react-router";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
-function RequireAuth({ children }){
-    const { isLoggedIn } = useContext(AuthContext)
+type RequireAuthProps = {
+    children: React.ReactNode
+}
+
+function RequireAuth({ children }: RequireAuthProps){
+    const { isLoggedIn } = useAuthContext()
     const location = useLocation()
 
     if(!isLoggedIn){

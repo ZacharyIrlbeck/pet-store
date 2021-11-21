@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Pet } from '../type-definitions/'
 
 const Card = styled.figure`
     display: grid;
@@ -16,7 +17,11 @@ const CardCaption = styled.figcaption`
     opacity: 0.7;
 `
 
-export default function PetCard({ pet }){
+type PetCardProps = {
+    pet: Pet
+}
+
+export default function PetCard({ pet }: PetCardProps){
     return(
         <Link to={`/pets/${pet.id}`} key={pet.id}>
             <Card>

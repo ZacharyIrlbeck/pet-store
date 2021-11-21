@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import useAuth from "../hooks/useAuth";
 import { AuthContextInterface } from '../type-definitions';
 
@@ -19,6 +19,15 @@ function AuthProvider({ children }: AuthProviderProps){
 
 export default AuthProvider
 
+const useAuthContext = (): AuthContextInterface => {
+    const context = useContext(AuthContext)
+
+    if(!context)
+        throw Error("useAuthContext needs to be used with AuthProvider")
+
+    return context
+}
+
 export {
-    AuthContext
+    useAuthContext
 }

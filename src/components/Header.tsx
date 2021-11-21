@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import { useAuthContext } from '../context/AuthContext'
 
 const TopNav = styled.ul`
 display: flex;
@@ -16,7 +15,7 @@ const NavItem = styled.li`
 
 
 export default function Header(){
-    const { isLoggedIn, logout } = useContext(AuthContext)
+    const { isLoggedIn, logout } = useAuthContext()
 
     return(<div>
         <TopNav>

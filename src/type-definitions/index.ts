@@ -27,10 +27,10 @@ export interface AuthContextInterface {
 export interface PetContextInterface {
     pets: Pet[];
     loading: boolean;
-    createPet: (data: Pet) => boolean;
+    createPet: (data: Partial<Pet>) => boolean;
     fetchPetsByVendor: (vendorId: number) => Pet[];
     getPet: (id: number) => Pet | undefined;
-    updatePet: (id: number, data: Pet) => boolean;
+    updatePet: (id: number, data: Partial<Pet>) => boolean;
     removeListing: (id: number) => boolean;
 }
 

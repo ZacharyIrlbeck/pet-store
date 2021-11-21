@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Pet } from '../type-definitions'
 import { fetchPets } from '../Api'
+import { useAuthContext } from '../context/AuthContext'
 
 function usePets(){
     const [pets, setPets] = useState<Pet[]>([])
     const [loading, setLoading] = useState(true)
+    const { userInfo } = useAuthContext()
 
     useEffect(() => {
         fetchPets().then(res => {
@@ -12,10 +14,20 @@ function usePets(){
         })
     }, [])
 
-    const createPet = (data: Pet) => {
-        data.id = pets[pets.length - 1].id + 1
+    const createPet = (data: Partial<Pet>) => {
+        if(!userInfo)
+            return false
 
-        setPets(pets => [...pets, {...data}])
+        const newPet = {
+            id: pets[pets.length - 1].id + 1,
+            vendor_id: userInfo.id,
+            name: data.name || "",
+            breed: data.breed || "",
+            price: data.price || "",
+            image: data.image || "",
+        } 
+
+        setPets(pets => [...pets, newPet])
         return true
     }
 
@@ -23,17 +35,15 @@ function usePets(){
 
     const getPet = (id: number) => pets.find(p => p.id === id)
 
-    const updatePet = (id: number, data: Pet) => {
+    const updatePet = (id: number, data: Partial<Pet>) => {
         setPets(pets.map(p => {
                 if(p.id === id){
-                    console.log('found a match, replacing...')
-    
                     return {
                         ...p,
-                        name: data.name,
-                        breed: data.breed,
-                        price: data.price,
-                        image: data.image,
+                        name: data.name || "",
+                        breed: data.breed || "",
+                        price: data.price || "",
+                        image: data.image || "",
                     }
                 }else{
                     return p

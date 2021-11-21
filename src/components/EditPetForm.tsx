@@ -1,8 +1,13 @@
-import { useContext, useState } from 'react'
-import { PetContext } from '../context/PetContext'
+import { useState } from 'react'
+import { usePetContext} from '../context/PetContext'
+import { Pet } from '../type-definitions/'
 
-function EditPetForm({ pet }){
-    const { updatePet } = useContext(PetContext)
+type EditPetFormProps = {
+    pet: Pet
+}
+
+function EditPetForm({ pet }: EditPetFormProps){
+    const { updatePet } = usePetContext()
     const [msg, setMsg] = useState("")
     const [err, setErr] = useState("")
 
@@ -11,17 +16,17 @@ function EditPetForm({ pet }){
     const [price, setPrice] = useState(pet.price)
     const [image, setImage] = useState(pet.image)
 
-    const handleSubmit = e => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setMsg("")
         setErr("")
 
         const fd = new FormData(e.currentTarget)
 
-        const name = fd.get("name")
-        const breed = fd.get("breed")
-        const price = fd.get("price")
-        const image = fd.get("image")
+        const name = fd.get("name") as string 
+        const breed = fd.get("breed") as string 
+        const price = fd.get("price") as string 
+        const image = fd.get("image") as string
 
         const res = updatePet(pet.id, {
             name,
@@ -38,7 +43,7 @@ function EditPetForm({ pet }){
     }  
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={e => handleSubmit(e)}>
             { err.length > 0 && err }
             { msg.length > 0 && msg }
             <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />

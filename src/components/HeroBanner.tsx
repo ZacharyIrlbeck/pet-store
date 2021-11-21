@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import faker from 'faker'
-import SearchBar from './SearchBar'
 
 const Banner = styled.div`
     height: 100vh;
@@ -14,16 +13,8 @@ const Banner = styled.div`
     font-size: 10em;
 `
 
-// const BannerContent = styled.div`
-//     height: 100%;
-//     width: 100%;
-//     color: white;
-// `
-
-// bit short on time, waiting on the search bar for now.
-
 export default function HeroBanner(){ 
     return(<Banner>
-        {/* <SearchBar /> */}
+        Welcome to the Pet Store!
     </Banner>)
 }

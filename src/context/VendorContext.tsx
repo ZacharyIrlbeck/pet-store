@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import useVendors from "../hooks/useVendors";
 import { VendorContextInterface } from "../type-definitions";
 
@@ -17,6 +17,15 @@ function VendorProvider({ children }: VendorProviderProps){
 
 export default VendorProvider
 
+const useVendorContext = () => {
+    const context = useContext(VendorContext)
+
+    if(!context)
+        throw Error("AuthContext must be used with AuthProvider")
+
+    return context
+}
+
 export {
-    VendorContext
+    useVendorContext
 }
