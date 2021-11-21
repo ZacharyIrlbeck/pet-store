@@ -1,4 +1,5 @@
 import * as faker from 'faker'
+import { Pet, Vendor } from './type-definitions/'
 
 const fetchPets = async (): Promise<Pet[]> => {
     const pets = Array(50).fill(undefined).map((val, ind) => {

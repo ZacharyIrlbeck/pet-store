@@ -1,11 +1,12 @@
 import { createContext } from "react";
 import usePets from "../hooks/usePets";
+import { PetContextInterface } from "../type-definitions";
 
-const PetContext = createContext()
+const PetContext = createContext<PetContextInterface | null>(null)
 
-type PetProviderProps = { }
+type PetProviderProps = { children: React.ReactNode }
 
-function PetProvider({ children }){
+function PetProvider({ children }: PetProviderProps){
     const petData = usePets()
 
     return(

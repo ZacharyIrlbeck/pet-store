@@ -1,32 +1,29 @@
 import { useEffect, useState } from 'react'
+import { Pet } from '../type-definitions'
+import { fetchPets } from '../Api'
 
 function usePets(){
     const [pets, setPets] = useState<Pet[]>([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetchPets()
+        fetchPets().then(res => {
+            setPets(res)
+        })
     }, [])
 
-    const createPet = (data) => {
-        // adding "id" here in lieu of back end api
-        data.id = pets.at(-1).id + 1
+    const createPet = (data: Pet) => {
+        data.id = pets[pets.length - 1].id + 1
+
         setPets(pets => [...pets, {...data}])
         return true
     }
 
-    const fetchPets = () => {
-        
+    const fetchPetsByVendor = (vendorId: number) => pets.filter(x => x.vendor_id === vendorId)
 
-        setPets([...res, ...defaultAdminPets])
-        setLoading(false)
-    }
+    const getPet = (id: number) => pets.find(p => p.id === id)
 
-    const fetchPetsByVendor = (vendorId) => pets.filter(x => x.vendor_id === vendorId)
-
-    const getPet = id => pets.find(p => p.id === id)
-
-    const updatePet = (id, data) => {
+    const updatePet = (id: number, data: Pet) => {
         setPets(pets.map(p => {
                 if(p.id === id){
                     console.log('found a match, replacing...')
@@ -36,7 +33,7 @@ function usePets(){
                         name: data.name,
                         breed: data.breed,
                         price: data.price,
-                        image: data.iamge,
+                        image: data.image,
                     }
                 }else{
                     return p
@@ -47,7 +44,7 @@ function usePets(){
         return true
     }
 
-    const removeListing = id => {
+    const removeListing = (id: number) => {
         setPets(pets.filter(p => p.id !== id))
 
         return true

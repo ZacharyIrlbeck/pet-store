@@ -1,9 +1,11 @@
 import { createContext } from "react";
 import useVendors from "../hooks/useVendors";
+import { VendorContextInterface } from "../type-definitions";
 
-const VendorContext = createContext()
+const VendorContext = createContext<VendorContextInterface | null>(null)
+type VendorProviderProps = { children: React.ReactNode }
 
-function VendorProvider({ children }){
+function VendorProvider({ children }: VendorProviderProps){
     const vendorData = useVendors()
 
     return(
